@@ -1,0 +1,1 @@
+This repository doesn't contain the Bolt assets for a license restriction. You have to manually install the Bolt package via [Asset Store](https://assetstore.unity.com/packages/tools/visual-scripting/bolt-163802).
