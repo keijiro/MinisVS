@@ -1,18 +1,16 @@
-using UnityEngine;
 using Ludiq;
 using Minis;
+using UnityEngine;
 
 namespace Bolt.Addons.Minis {
 
-[UnitCategory("MIDI")]
-[UnitTitle("MIDI CC Input")]
-public sealed class MidiControlInputUnit : Unit                                               
-{                          
+[UnitCategory("MIDI"), UnitTitle("MIDI CC")]
+public sealed class MidiControlUnit : Unit
+{
     [DoNotSerialize]
     public ValueInput controlNumber { get; private set; }
 
-    [DoNotSerialize]
-    [PortLabelHidden]
+    [DoNotSerialize, PortLabelHidden]
     public ValueOutput output { get; private set; }
 
     protected override void Definition()
@@ -24,10 +22,10 @@ public sealed class MidiControlInputUnit : Unit
 
     private float Operation(Flow flow)
     {
-        var dev = MidiDevice.current;
-        if (dev == null) return 0;
-        var num = flow.GetValue<int>(controlNumber);
-        return dev.GetControl(num).ReadValue();
+        var device = MidiDevice.current;
+        if (device == null) return 0;
+        var number = flow.GetValue<int>(controlNumber);
+        return device.GetControl(number).ReadValue();
     }
 }
 
