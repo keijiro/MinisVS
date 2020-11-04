@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bolt.Addons.Minis {
 
-[UnitCategory("MIDI"), UnitTitle("MIDI CC")]
+[UnitCategory("MIDI"), UnitTitle("MIDI Control")]
 public sealed class MidiControlUnit : Unit
 {
     [DoNotSerialize]
