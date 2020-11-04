@@ -47,6 +47,10 @@ public sealed class MidiControlUnit : Unit, IGraphElementWithData
         Value = ValueOutput<float>(nameof(Value), GetValue);
     }
 
+    #endregion
+
+    #region Private method
+
     float GetValue(Flow flow)
     {
         var data = flow.stack.GetElementData<Data>(this);

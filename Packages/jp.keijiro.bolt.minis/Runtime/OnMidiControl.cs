@@ -7,59 +7,79 @@ namespace Bolt.Addons.Minis {
 [UnitCategory("Events/Input"), UnitTitle("On MIDI Control")]
 public sealed class OnMidiControl : MachineEventUnit<EmptyEventArgs>
 {
+    #region Data class
+
     public new sealed class Data : EventUnit<EmptyEventArgs>.Data
     {
-        public float state;
+        public float Value { get; set; }
+
+        public MidiDevice Device { get; private set; }
+
+        public bool Update(float newValue)
+        {
+            if (newValue == Value) return false;
+            Value = newValue;
+            return true;
+        }
+
+        public bool CheckDevice(int channel)
+        {
+            if (Device != null && Device.channel == channel) return true;
+            Device = DeviceQuery.FindChannel(channel);
+            return Device != null;
+        }
     }
 
     public override IGraphElementData CreateData() => new Data();
 
-    protected override string hookName => EventHooks.Update;
+    #endregion
+
+    #region Unit I/O
 
     [DoNotSerialize]
-    public ValueInput controlNumber { get; private set; }
+    public ValueInput Channel { get; private set; }
+
+    [DoNotSerialize]
+    public ValueInput ControlNumber { get; private set; }
 
     [DoNotSerialize, PortLabel("Value")]
-    public ValueOutput controlValue { get; private set; }
+    public ValueOutput Value { get; private set; }
+
+    #endregion
+
+    #region Event unit implementation
+
+    protected override string hookName => EventHooks.Update;
 
     protected override void Definition()
     {
         base.Definition();
-        controlNumber = ValueInput<int>(nameof(controlNumber), 0);
-        controlValue = ValueOutput<float>(nameof(controlValue), Operation);
-        Requirement(controlNumber, controlValue);
-    }
-
-    public override void StartListening(GraphStack stack)
-    {
-        base.StartListening(stack);
-        stack.GetElementData<Data>(this).state = 0;
+        Channel = ValueInput<int>(nameof(Channel), 0);
+        ControlNumber = ValueInput<int>(nameof(ControlNumber), 0);
+        Value = ValueOutput<float>(nameof(Value), GetValue);
     }
 
     protected override bool ShouldTrigger(Flow flow, EmptyEventArgs args)
     {
-        var device = MidiDevice.current;
-        if (device == null) return false;
-
         var data = flow.stack.GetElementData<Data>(this);
         if (!data.isListening) return false;
-
-        var number = flow.GetValue<int>(controlNumber);
-        var current = device.GetControl(number).ReadValue();
-
-        var trigger = data.state != current;
-        data.state = current;
-
-        return trigger;
+        return data.Update(GetValue(flow));
     }
 
-    private float Operation(Flow flow)
+    #endregion
+
+    #region Private method
+
+    float GetValue(Flow flow)
     {
-        var device = MidiDevice.current;
-        if (device == null) return 0;
-        var number = flow.GetValue<int>(controlNumber);
-        return device.GetControl(number).ReadValue();
+        var data = flow.stack.GetElementData<Data>(this);
+        var vChannel = flow.GetValue<int>(Channel);
+        if (!data.CheckDevice(vChannel)) return 0;
+        var vControlNumber = flow.GetValue<int>(ControlNumber);
+        return data.Device.GetControl(vControlNumber).ReadValue();
     }
+
+    #endregion
 }
 
 } // Bolt.Addons.Minis
