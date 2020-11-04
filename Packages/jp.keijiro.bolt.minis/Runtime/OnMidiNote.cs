@@ -22,11 +22,16 @@ public sealed class OnMidiNote : MachineEventUnit<EmptyEventArgs>
     [DoNotSerialize]
     public ValueInput action { get; private set; }
 
+    [DoNotSerialize]
+    public ValueOutput velocity { get; private set; }
+
     protected override void Definition()
     {
         base.Definition();
         noteNumber = ValueInput<int>(nameof(noteNumber), 0);
         action = ValueInput(nameof(action), PressState.Down);
+        velocity = ValueOutput<float>(nameof(velocity), Operation);
+        Requirement(noteNumber, velocity);
     }
 
     public override void StartListening(GraphStack stack)
@@ -63,6 +68,14 @@ public sealed class OnMidiNote : MachineEventUnit<EmptyEventArgs>
             case PressState.Hold: return current > 0;
         }
         return false;
+    }
+
+    private float Operation(Flow flow)
+    {
+        var device = MidiDevice.current;
+        if (device == null) return 0;
+        var number = flow.GetValue<int>(noteNumber);
+        return device.GetNote(number).velocity;
     }
 }
 

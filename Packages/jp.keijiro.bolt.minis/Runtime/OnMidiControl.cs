@@ -19,10 +19,15 @@ public sealed class OnMidiControl : MachineEventUnit<EmptyEventArgs>
     [DoNotSerialize]
     public ValueInput controlNumber { get; private set; }
 
+    [DoNotSerialize, PortLabel("Value")]
+    public ValueOutput controlValue { get; private set; }
+
     protected override void Definition()
     {
         base.Definition();
         controlNumber = ValueInput<int>(nameof(controlNumber), 0);
+        controlValue = ValueOutput<float>(nameof(controlValue), Operation);
+        Requirement(controlNumber, controlValue);
     }
 
     public override void StartListening(GraphStack stack)
@@ -46,6 +51,14 @@ public sealed class OnMidiControl : MachineEventUnit<EmptyEventArgs>
         data.state = current;
 
         return trigger;
+    }
+
+    private float Operation(Flow flow)
+    {
+        var device = MidiDevice.current;
+        if (device == null) return 0;
+        var number = flow.GetValue<int>(controlNumber);
+        return device.GetControl(number).ReadValue();
     }
 }
 

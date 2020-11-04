@@ -10,17 +10,17 @@ public sealed class MidiControlUnit : Unit
     [DoNotSerialize]
     public ValueInput controlNumber { get; private set; }
 
-    [DoNotSerialize, PortLabelHidden]
-    public ValueOutput output { get; private set; }
+    [DoNotSerialize, PortLabel("Value")]
+    public ValueOutput controlValue { get; private set; }
 
     protected override void Definition()
     {
         controlNumber = ValueInput<int>(nameof(controlNumber), 0);
-        output = ValueOutput<float>(nameof(output), Operation);
-        Requirement(controlNumber, output);
+        controlValue = ValueOutput<float>(nameof(controlValue), GetControlValue);
+        Requirement(controlNumber, controlValue);
     }
 
-    private float Operation(Flow flow)
+    private float GetControlValue(Flow flow)
     {
         var device = MidiDevice.current;
         if (device == null) return 0;
