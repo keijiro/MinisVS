@@ -7,7 +7,7 @@ namespace Bolt.Addons.Minis {
 [UnitCategory("Events/Input"), UnitTitle("On MIDI Control")]
 public sealed class OnMidiControl : MachineEventUnit<EmptyEventArgs>
 {
-    public new class Data : EventUnit<EmptyEventArgs>.Data
+    public new sealed class Data : EventUnit<EmptyEventArgs>.Data
     {
         public float state;
     }

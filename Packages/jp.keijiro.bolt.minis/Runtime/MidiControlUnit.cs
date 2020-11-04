@@ -5,28 +5,58 @@ using UnityEngine;
 namespace Bolt.Addons.Minis {
 
 [UnitCategory("MIDI"), UnitTitle("MIDI Control")]
-public sealed class MidiControlUnit : Unit
+public sealed class MidiControlUnit : Unit, IGraphElementWithData
 {
-    [DoNotSerialize]
-    public ValueInput controlNumber { get; private set; }
+    #region Data class
 
-    [DoNotSerialize, PortLabel("Value")]
-    public ValueOutput controlValue { get; private set; }
+    public sealed class Data : IGraphElementData
+    {
+        public MidiDevice Device { get; private set; }
+
+        public bool CheckDevice(int channel)
+        {
+            if (Device != null && Device.channel == channel) return true;
+            Device = DeviceQuery.FindChannel(channel);
+            return Device != null;
+        }
+    }
+
+    public IGraphElementData CreateData() => new Data();
+
+    #endregion
+
+    #region Unit I/O
+
+    [DoNotSerialize]
+    public ValueInput Channel { get; private set; }
+
+    [DoNotSerialize]
+    public ValueInput ControlNumber { get; private set; }
+
+    [DoNotSerialize]
+    public ValueOutput Value { get; private set; }
+
+    #endregion
+
+    #region Unit implementation
 
     protected override void Definition()
     {
-        controlNumber = ValueInput<int>(nameof(controlNumber), 0);
-        controlValue = ValueOutput<float>(nameof(controlValue), GetControlValue);
-        Requirement(controlNumber, controlValue);
+        Channel = ValueInput<int>(nameof(Channel), 0);
+        ControlNumber = ValueInput<int>(nameof(ControlNumber), 0);
+        Value = ValueOutput<float>(nameof(Value), GetValue);
     }
 
-    private float GetControlValue(Flow flow)
+    float GetValue(Flow flow)
     {
-        var device = MidiDevice.current;
-        if (device == null) return 0;
-        var number = flow.GetValue<int>(controlNumber);
-        return device.GetControl(number).ReadValue();
+        var data = flow.stack.GetElementData<Data>(this);
+        var vChannel = flow.GetValue<int>(Channel);
+        if (!data.CheckDevice(vChannel)) return 0;
+        var vControlNumber = flow.GetValue<int>(ControlNumber);
+        return data.Device.GetControl(vControlNumber).ReadValue();
     }
+
+    #endregion
 }
 
 } // Bolt.Addons.Minis
