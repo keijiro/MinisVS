@@ -33,7 +33,7 @@ public sealed class MidiControlUnit
     [DoNotSerialize]
     public ValueInput Channel { get; private set; }
 
-    [DoNotSerialize]
+    [DoNotSerialize, PortLabel("CC#")]
     public ValueInput ControlNumber { get; private set; }
 
     [DoNotSerialize]

@@ -34,7 +34,7 @@ public sealed class MidiNoteUnit
     [DoNotSerialize]
     public ValueInput Channel { get; private set; }
 
-    [DoNotSerialize]
+    [DoNotSerialize, PortLabel("Note#")]
     public ValueInput NoteNumber { get; private set; }
 
     [DoNotSerialize]
