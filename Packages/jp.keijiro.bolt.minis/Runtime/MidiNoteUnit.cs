@@ -44,7 +44,7 @@ public sealed class MidiNoteUnit
     public ControlOutput NoteOff { get; private set; }
 
     [DoNotSerialize]
-    public ValueOutput Pressed { get; private set; }
+    public ValueOutput IsPressed { get; private set; }
 
     [DoNotSerialize]
     public ValueOutput Velocity { get; private set; }
@@ -55,15 +55,16 @@ public sealed class MidiNoteUnit
 
     protected override void Definition()
     {
+        isControlRoot = true;
         Channel = ValueInput<int>(nameof(Channel), 0);
         NoteNumber = ValueInput<int>(nameof(NoteNumber), 0);
 		NoteOn = ControlOutput(nameof(NoteOn));
 		NoteOff = ControlOutput(nameof(NoteOff));
-        Pressed = ValueOutput<bool>(nameof(Pressed), IsPressed);
+        IsPressed = ValueOutput<bool>(nameof(IsPressed), GetIsPressed);
         Velocity = ValueOutput<float>(nameof(Velocity), GetVelocity);
     }
 
-    bool IsPressed(Flow flow)
+    bool GetIsPressed(Flow flow)
       => flow.stack.GetElementData<Data>(this).State > 0;
 
     float GetVelocity(Flow flow)
@@ -71,7 +72,7 @@ public sealed class MidiNoteUnit
 
     #endregion
 
-    #region Graph event listener implementation
+    #region Graph event listener
 
     public void StartListening(GraphStack stack)
     {
