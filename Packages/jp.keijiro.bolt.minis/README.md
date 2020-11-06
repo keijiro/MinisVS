@@ -1,6 +1,9 @@
 BoltMinis
 =========
 
+![gif](https://i.imgur.com/p6xh9FO.gif)
+![gif](https://i.imgur.com/xdNSsu8.gif)
+
 **BoltMinis** is an add-on for Unity's [Bolt visual scripting system] that adds
 custom units for handling MIDI input.
 
