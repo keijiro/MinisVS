@@ -9,8 +9,8 @@
     }
   ],
   "dependencies": {
-    "com.unity.timeline": "1.4.4",
+    "com.unity.modules.uielements": "1.0.0",
     "com.unity.ugui": "1.0.0",
-    "com.unity.modules.uielements": "1.0.0"
+    "jp.keijiro.test-assets": "1.0.1"
   }
 }
