@@ -20,7 +20,7 @@ Custom Units
 
 ### MIDI Note unit
 
-![note unit](https://i.imgur.com/VWshujo.png)
+![note unit](https://i.imgur.com/kGOaAoY.png)
 
 **MIDI Note** is a unit for handling MIDI note input. You can specify a MIDI
 channel and a MIDI note number to which the unit listens.
@@ -33,7 +33,7 @@ The *Velocity* port outputs the velocity value on the last note.
 
 ### MIDI Control unit
 
-![control unit](https://i.imgur.com/C9MVkn2.png)
+![control unit](https://i.imgur.com/QuqiPWG.png)
 
 **MIDI Control** is a unit for handling MIDI control input (CC). You can specify
 a MIDI channel and a MIDI control number to which the unit listens.
@@ -71,7 +71,7 @@ The sample project shows how to move a sphere using MIDI note input and MIDI
 control (CC) input. You may want to change the note/CC numbers for your MIDI
 device.
 
-![sample graph](https://i.imgur.com/J3zuM5C.png)
+![sample graph](https://i.imgur.com/4RVcaU4.png)
 
 How to install the add-on to an existing project
 ------------------------------------------------
@@ -97,7 +97,7 @@ To the `scopedRegistries` section:
 To the `dependencies` section:
 
 ```
-"jp.keijiro.bolt.minis": "1.0.0"
+"jp.keijiro.bolt.minis": "1.0.1"
 ```
 
 After changes, the manifest file should look like below:
@@ -112,7 +112,7 @@ After changes, the manifest file should look like below:
     }
   ],
   "dependencies": {
-    "jp.keijiro.bolt.minis": "1.0.0",
+    "jp.keijiro.bolt.minis": "1.0.1",
     ...
 ```
 
