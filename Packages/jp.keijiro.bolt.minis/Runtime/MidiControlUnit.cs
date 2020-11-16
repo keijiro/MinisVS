@@ -49,7 +49,7 @@ public sealed class MidiControlUnit
     protected override void Definition()
     {
         isControlRoot = true;
-        Channel = ValueInput<int>(nameof(Channel), 0);
+        Channel = ValueInput<int>(nameof(Channel), 1);
         ControlNumber = ValueInput<int>(nameof(ControlNumber), 0);
 		Changed = ControlOutput(nameof(Changed));
         Value = ValueOutput<float>(nameof(Value), GetValue);
@@ -98,7 +98,7 @@ public sealed class MidiControlUnit
         {
             var data = flow.stack.GetElementData<Data>(this);
 
-            var vChannel = flow.GetValue<int>(Channel);
+            var vChannel = flow.GetValue<int>(Channel) - 1;
             if (!data.CheckDevice(vChannel)) return;
 
             var prev = data.Value;

@@ -56,7 +56,7 @@ public sealed class MidiNoteUnit
     protected override void Definition()
     {
         isControlRoot = true;
-        Channel = ValueInput<int>(nameof(Channel), 0);
+        Channel = ValueInput<int>(nameof(Channel), 1);
         NoteNumber = ValueInput<int>(nameof(NoteNumber), 0);
 		NoteOn = ControlOutput(nameof(NoteOn));
 		NoteOff = ControlOutput(nameof(NoteOff));
@@ -110,7 +110,7 @@ public sealed class MidiNoteUnit
         {
             var data = flow.stack.GetElementData<Data>(this);
 
-            var vChannel = flow.GetValue<int>(Channel);
+            var vChannel = flow.GetValue<int>(Channel) - 1;
             if (!data.CheckDevice(vChannel)) return;
 
             var prev = data.State;
