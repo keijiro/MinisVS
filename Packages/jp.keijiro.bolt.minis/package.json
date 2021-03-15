@@ -1,13 +1,16 @@
 {
   "author": "Keijiro Takahashi",
-  "dependencies": { "jp.keijiro.minis": "1.0.8" },
-  "description": "MIDI extension for Bolt visual scripting",
-  "displayName": "BoltMinis",
+  "dependencies": {
+    "com.unity.visualscripting": "1.5.1",
+    "jp.keijiro.minis": "1.0.9"
+  },
+  "description": "MIDI extension for Visual Scripting",
+  "displayName": "MinisVS",
   "keywords": [ "unity" ],
   "license": "Unlicense",
-  "name": "jp.keijiro.bolt.minis",
-  "repository": "github:keijiro/BoltMinis",
-  "unity": "2019.3",
-  "unityRelease": "0f1",
-  "version": "1.0.1"
+  "name": "jp.keijiro.minis.visualscripting",
+  "repository": "github:keijiro/MinisVS",
+  "unity": "2021.1",
+  "unityRelease": "0b1",
+  "version": "1.0.2"
 }

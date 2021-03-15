@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.inputsystem": {
-      "version": "1.0.0",
+      "version": "1.0.2",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
@@ -16,23 +16,39 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "jp.keijiro.bolt.minis": {
-      "version": "file:jp.keijiro.bolt.minis",
-      "depth": 0,
-      "source": "embedded",
+    "com.unity.visualscripting": {
+      "version": "1.5.1",
+      "depth": 1,
+      "source": "registry",
       "dependencies": {
-        "jp.keijiro.minis": "1.0.8"
-      }
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.ai": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0",
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.physics2d": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "jp.keijiro.minis": {
-      "version": "1.0.8",
+      "version": "1.0.9",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "jp.keijiro.rtmidi": "1.0.3",
-        "com.unity.inputsystem": "1.0.0"
+        "com.unity.inputsystem": "1.0.1"
       },
       "url": "https://registry.npmjs.com"
+    },
+    "jp.keijiro.minis.visualscripting": {
+      "version": "file:jp.keijiro.bolt.minis",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.visualscripting": "1.5.1",
+        "jp.keijiro.minis": "1.0.9"
+      }
     },
     "jp.keijiro.rtmidi": {
       "version": "1.0.3",
@@ -48,6 +64,18 @@
       "dependencies": {},
       "url": "https://registry.npmjs.com"
     },
+    "com.unity.modules.ai": {
+      "version": "1.0.0",
+      "depth": 2,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.animation": {
+      "version": "1.0.0",
+      "depth": 2,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.unity.modules.imgui": {
       "version": "1.0.0",
       "depth": 1,
@@ -57,6 +85,24 @@
     "com.unity.modules.jsonserialize": {
       "version": "1.0.0",
       "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.particlesystem": {
+      "version": "1.0.0",
+      "depth": 2,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.physics": {
+      "version": "1.0.0",
+      "depth": 2,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.physics2d": {
+      "version": "1.0.0",
+      "depth": 2,
       "source": "builtin",
       "dependencies": {}
     },

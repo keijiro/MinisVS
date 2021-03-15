@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Layouts;
 
-namespace Bolt.Addons.Minis {
+namespace Minis.VisualScripting {
 
 static class DeviceQuery
 {
@@ -24,4 +24,4 @@ static class DeviceQuery
     }
 }
 
-} // Bolt.Addons.Minis
+} // Minis.VisualScripting
