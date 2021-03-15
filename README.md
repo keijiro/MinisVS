@@ -61,7 +61,7 @@ To the `scopedRegistries` section:
 To the `dependencies` section:
 
 ```
-"jp.keijiro.minis.visualscripting": "1.0.4"
+"jp.keijiro.minis.visualscripting": "1.0.5"
 ```
 
 After changes, the manifest file should look like below:
@@ -76,6 +76,6 @@ After changes, the manifest file should look like below:
     }
   ],
   "dependencies": {
-    "jp.keijiro.minis.visualscripting": "1.0.4",
+    "jp.keijiro.minis.visualscripting": "1.0.5",
     ...
 ```
