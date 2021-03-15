@@ -1,7 +1,8 @@
 {
   "author": "Keijiro Takahashi",
   "dependencies": {
-    "com.unity.visualscripting": "1.5.1",
+    "com.unity.modules.uielements": "1.0.0",
+    "com.unity.visualscripting": "1.5.2",
     "jp.keijiro.minis": "1.0.9"
   },
   "description": "MIDI extension for Visual Scripting",
@@ -12,5 +13,5 @@
   "repository": "github:keijiro/MinisVS",
   "unity": "2021.1",
   "unityRelease": "0b1",
-  "version": "1.0.2"
+  "version": "1.0.3"
 }

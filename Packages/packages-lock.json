@@ -9,7 +9,7 @@
     },
     "com.unity.ugui": {
       "version": "1.0.0",
-      "depth": 0,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
@@ -17,7 +17,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.5.1",
+      "version": "1.5.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -42,11 +42,12 @@
       "url": "https://registry.npmjs.com"
     },
     "jp.keijiro.minis.visualscripting": {
-      "version": "file:jp.keijiro.bolt.minis",
+      "version": "file:jp.keijiro.minis.visualscripting",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.unity.visualscripting": "1.5.1",
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.visualscripting": "1.5.2",
         "jp.keijiro.minis": "1.0.9"
       }
     },
@@ -78,13 +79,13 @@
     },
     "com.unity.modules.imgui": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {}
     },
     "com.unity.modules.jsonserialize": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {}
     },
@@ -108,13 +109,13 @@
     },
     "com.unity.modules.ui": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {}
     },
     "com.unity.modules.uielements": {
       "version": "1.0.0",
-      "depth": 0,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
@@ -125,7 +126,7 @@
     },
     "com.unity.modules.uielementsnative": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
