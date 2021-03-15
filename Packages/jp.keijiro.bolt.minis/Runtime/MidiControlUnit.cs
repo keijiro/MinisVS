@@ -2,9 +2,10 @@ using Minis;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Bolt.Addons.Minis {
+namespace Minis.VisualScripting {
 
 [UnitCategory("MIDI"), UnitTitle("MIDI Control")]
+[RenamedFrom("Bolt.Addons.Minis.MidiControlUnit")]
 public sealed class MidiControlUnit
   : Unit, IGraphElementWithData, IGraphEventListener
 {
@@ -113,4 +114,4 @@ public sealed class MidiControlUnit
     #endregion
 }
 
-} // Bolt.Addons.Minis
+} // Minis.VisualScripting
