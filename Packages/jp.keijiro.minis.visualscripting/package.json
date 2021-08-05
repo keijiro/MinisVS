@@ -3,7 +3,7 @@
   "dependencies": {
     "com.unity.modules.uielements": "1.0.0",
     "com.unity.visualscripting": "1.5.2",
-    "jp.keijiro.minis": "1.0.9"
+    "jp.keijiro.minis": "1.0.10"
   },
   "description": "MIDI extension for Visual Scripting",
   "displayName": "MinisVS",
